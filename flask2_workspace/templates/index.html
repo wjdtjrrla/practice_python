@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>flask 앱에서 가위 바위 보 !!! </h4>
+
+    <!-- form 태그를 이용해서 유저의 닉네임을 받은 후 /game url로 보낸다-->
+    <form action='/game' method='get'>
+        <label>닉네임 적기</label>
+        <div>
+            <input type='text' name='nickname' required> 
+        </div>
+        <div>
+            <input type='submit' value='게임시작'>
+        </div>
+    </form>
+    <button onclick="location.href='/signup'">회원가입</button>
+</body>
+</html>

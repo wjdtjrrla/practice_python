@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        .a{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p id='p0'></p>
+    <p id='p1'>
+        1234
+    </p>
+    <p>
+        Hello
+    </p>
+    <button>BUTTON</button>
+    <script>
+        // p 태그를 선택
+        //documnet.getElementByTagName('p')
+        // css(속성명, 속성값) : 디자인 대입
+        $('p').css('color','red')
+        // 태그 중 id가 p0인 태그 선택
+        // document.getElementById('p0')
+        // 선택자 : 태그 네임, id(#id명), class (.class명)
+        // p0태그를 가진 id 값을 선탁하여 해당 스타일 대입
+        $('#p0').html('<b>Title</b>')
+        // button이라는 태그 선택
+        // button이 클릭 됐을 떄
+        $('button').click(
+            // 함수 생성
+            function(){
+                //id가 p1인 태그 선택
+                // 버튼을 눌렀을 때 해당하는 태그를 숨긴다.
+                // $('#p1').hide()
+                // id가 p1인 태그를 선택하여 class에 a가 있으면 지우고
+                // 없으면 생성
+                $('#p1').toggleClass('a')
+            }
+        )
+
+    </script>    
+    
+</body>
+</html>

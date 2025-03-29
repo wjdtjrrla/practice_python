@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQeury // bootstrap 로그하는 코드를 다른 html(header.html)에서 불러오기-->
+    {% include 'header.html' %}
+</head>
+<body>
+    <!-- 유저가 가위, 바위, 보를 선택할 수 있는 공간 생성 -->
+        <!-- 유저가 선택한 값을 서버에 보낸다. -->
+        <!-- 비동기 방식으로 화면은 그대로 유지, 데이터만 서버에 보냄 -->
+    <select id = 'user_select'>
+        <option value="1">가위</option>
+        <option value="2">바위</option>
+        <option value="3">보</option>
+    </select>
+    <button>시작</button>
+    <!-- 게임의 결과를 보여주는 부분 -->
+    <ul>
+
+    </ul>
+
+
+    <script>
+        //버튼 태그가 클릭이 되면
+        $('button').click(
+            function(){
+                // id가 user_select인 값을 팝업 창에 한 번 보여주기
+                let user_select = $('#user_select').val()
+                //alert(user_select)
+                // 비동기 통신으로 웹 서버에 보낸다.
+                $.ajax(
+                    //dict 형태로 인자 값 생성
+                    // 주소, 방식, 받아오는 데이터 타입, 보내는 데이터 
+                    {
+                        url: '/game_result',
+                        method : 'get',
+                        dataType : 'json',
+                        data : {
+                            'user' : user_select
+                        }
+                    }
+                )
+                //데이터를 보내고 난 후 데이터를 받는 부분
+                .then(
+                    function(res){
+                        //서버가 보낸 데이터를 이용하여 html을 변경
+                        //{ 'user' : 유저가 선택한 값, 'server' : 서버가 선택한 값, 'result' : 게임의 결과}
+                        //게임의 결과를 ul 태그 안에 li태그로 추가
+                        $('ul').append(
+                            `
+                                <li>
+                                    유저 : ${res['user']},
+                                    서버 : ${res['server']},
+                                    결과 : ${res['result']}
+                            `
+                        )
+                    }
+                )
+            }
+        )
+
+
+    </script>
+
+</body>
+</html>
